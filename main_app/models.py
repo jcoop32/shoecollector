@@ -8,6 +8,7 @@ class Shoe(models.Model):
     description = models.TextField(max_length=200)
     year = models.IntegerField('Year Released')
     price = models.FloatField()
+    img = models.CharField(max_length=250)
     
     def __str__(self):
         return f'{self.brand} ({self.modelName})'
