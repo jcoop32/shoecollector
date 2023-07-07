@@ -11,7 +11,7 @@ typesOfShoes = (
 # Create your models here.
 class Shoe(models.Model):
     brand = models.CharField(max_length=100)
-    modelName = models.CharField(max_length=100)
+    modelName = models.CharField(max_length=100, verbose_name='Model Name')
     type = models.CharField(max_length=20, choices=typesOfShoes, default=typesOfShoes[0][0])
     colorway = models.CharField(max_length=100)
     description = models.TextField(max_length=200)
