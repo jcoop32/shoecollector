@@ -1,10 +1,18 @@
 from django.db import models
 from django.urls import reverse
 
+typesOfShoes = (
+    ('Sneakers', 'Sneakers'),
+    ('Casual', 'Casual'),
+    ('Boots', 'Boots'),
+    ('Athletic', 'Athletic'),
+)
+
 # Create your models here.
 class Shoe(models.Model):
     brand = models.CharField(max_length=100)
     modelName = models.CharField(max_length=100)
+    type = models.CharField(max_length=20, choices=typesOfShoes, default=typesOfShoes[0][0])
     colorway = models.CharField(max_length=100)
     description = models.TextField(max_length=200)
     year = models.IntegerField('Year Released')

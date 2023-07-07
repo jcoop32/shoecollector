@@ -4,17 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shoe Collector</title>
+    <title>ShoeBox</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
     <header class="navbar-fixed">
     <nav>
         <div class="nav-wrapper blue">
-          <a href="{% url 'home' %}" class="left brand-logo">Shoe Collector</a>
-          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <a href="{% url 'home' %}" class="left brand-logo hide-on-med-and-down">ShoeBox</a>
+          <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <a href="{% url 'home' %}" class="right brand-logo hide-on-large-only show-on-med-and-down">ShoeBox</a>
           <ul class="right hide-on-med-and-down">
             <li><a href="{% url 'about' %}">About</a></li>
              <li><a href="{% url 'shoe_create' %}">Add Shoe</a></li>
@@ -23,11 +26,11 @@
         </div>
       </nav>
     </header>
-   <!-- <ul class="sidenav" id="mobile">
-        <li><a href="">About</a></li>
-         <li><a href=""></a>Add Shoe</li>
-        <li><a href="">View All My Shoes</a></li>
-      </ul> -->
+   <ul class="sidenav" id="mobile">
+      <li><a href="{% url 'about' %}">About</a></li>
+      <li><a href="{% url 'shoe_create' %}">Add Shoe</a></li>
+      <li><a href="{% url 'collection' %}">My Collection</a></li> 
+      </ul>
     <main class="container">
         {% block content %} 
         {% endblock %}
@@ -37,6 +40,11 @@
           All Rights Reserved, &copy; 2023 Shoe Collector &nbsp;
         </div>
       </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <!-- jquery for sidenav -->
+    <script>
+      $(document).ready(() => {
+        $('.sidenav').sidenav();
+      });
+  </script>
 </body>
 </html>

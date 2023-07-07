@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
-
 {% block content %}
 
-<a href="{% url 'collection' %}"><i class="material-icons">arrow_back</i></a>
+<a href="{% url 'collection' %}" draggable="false"><i class="material-icons">arrow_back</i></a>
     <div class="row">
         <div class="col s12">
             <h3>{{ shoe.brand }} {{ shoe.modelName }}</h3>
+            <div class="image-container">
+                <img src="{{ shoe.img }}" class="shoe-image" style="max-width: 300px; max-height: 300px;">
+            </div>
             <p><strong>Colorway:</strong> {{ shoe.colorway }}</p>
+            <p><strong>Type:</strong> {{ shoe.type }}</p>
             <p><strong>Description:</strong> {{ shoe.description }}</p>
             <p><strong>Year Released:</strong> {{ shoe.year }}</p>
             <p><strong>Price:</strong> ${{ shoe.price }}</p>
