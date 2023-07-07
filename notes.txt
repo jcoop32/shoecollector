@@ -1,0 +1,7 @@
+Pages -
+home page: landing page
+about page: description about app
+view my collection: gallery of shoes w/ desc
+detail: shoe price
+bonus:
+login page
