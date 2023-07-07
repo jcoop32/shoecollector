@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
   <h1>My Shoe Collection</h1>
+  <a href="{% url 'shoe_create' %}"><i class="material-icons">add</i></a>
   {% if shoes %}
     <div class="row">
     {% for shoe in shoes %}
+    <a href="{% url 'details' shoe.id %}" class="black-text">
         <div class="col s6">
           <div class="card large">
             <div class="card-image">
@@ -19,6 +21,7 @@
             </div>
           </div>
         </div>
+      </a>
     {% endfor %}
     </div>
   {% else %}

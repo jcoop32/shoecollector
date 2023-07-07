@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Shoe(models.Model):
@@ -12,3 +13,5 @@ class Shoe(models.Model):
     
     def __str__(self):
         return f'{self.brand} ({self.modelName})'
+    def get_absolute_url(self):
+        return reverse('shoe_details', kwargs={'shoe_id': self.id})

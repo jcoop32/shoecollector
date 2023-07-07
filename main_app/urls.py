@@ -5,4 +5,5 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('collection/', views.collection, name='collection'),
     path('collection/<int:shoe_id>/', views.shoe_details, name='details'),
+    path('collection/create/', views.ShoeCreate.as_view(), name='shoe_create'),
 ]

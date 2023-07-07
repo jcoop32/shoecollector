@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic import CreateView, UpdateView, DeleteView
 from .models import Shoe
 
 # Create your views here.
@@ -15,3 +16,11 @@ def collection(request):
 def shoe_details(request, shoe_id):
     shoe = Shoe.objects.get(id=shoe_id)
     return render(request, 'shoes/detail.html', {'shoe': shoe})
+
+class ShoeCreate(CreateView):
+    model = Shoe
+    fields = '__all__'
+
+class ShoeUpdate(UpdateView):
+    model = Shoe
+    fields = '__all__'
