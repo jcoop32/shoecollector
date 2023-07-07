@@ -14,4 +14,4 @@ class Shoe(models.Model):
     def __str__(self):
         return f'{self.brand} ({self.modelName})'
     def get_absolute_url(self):
-        return reverse('shoe_details', kwargs={'shoe_id': self.id})
+        return reverse('details', kwargs={'shoe_id': self.id})
