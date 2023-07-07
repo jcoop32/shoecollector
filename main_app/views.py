@@ -15,7 +15,7 @@ def collection(request):
 
 def shoe_details(request, shoe_id):
     shoe = Shoe.objects.get(id=shoe_id)
-    return render(request, 'shoes/detail.html', {'shoe': shoe})
+    return render(request, 'shoes/details.html', {'shoe': shoe})
 
 class ShoeCreate(CreateView):
     model = Shoe
@@ -24,3 +24,8 @@ class ShoeCreate(CreateView):
 class ShoeUpdate(UpdateView):
     model = Shoe
     fields = '__all__'
+
+
+class ShoeDelete(DeleteView):
+    model = Shoe
+    success_url = '/collection'
