@@ -15,7 +15,7 @@
               <p>Description: {{ shoe.description }}</p>
             </div>
             <div class="card-action ">
-              <a href="#" class="black-text">View</a>
+              <a href="{% url 'details' shoe.id %}" class="black-text">View</a>
             </div>
           </div>
         </div>
