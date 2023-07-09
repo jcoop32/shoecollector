@@ -14,6 +14,12 @@ def about(request):
     return render(request, 'about.html')
 
 @login_required
+def explore_page(request):
+    # all shoes except the users
+    shoes = Shoe.objects.exclude(user=request.user)
+    return render(request, 'shoes/explore_page.html', {'shoes': shoes})
+
+@login_required
 def collection(request):
     # filters only shoes that user has
     shoes = Shoe.objects.filter(user=request.user)
@@ -22,7 +28,8 @@ def collection(request):
 @login_required
 def shoe_details(request, shoe_id):
     shoe = Shoe.objects.get(id=shoe_id)
-    return render(request, 'shoes/details.html', {'shoe': shoe})
+    user = request.user
+    return render(request, 'shoes/details.html', {'shoe': shoe, 'user': user})
 
 class ShoeCreate(LoginRequiredMixin, CreateView):
     model = Shoe

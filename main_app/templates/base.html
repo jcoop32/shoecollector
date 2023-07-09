@@ -21,6 +21,7 @@
           <ul class="right hide-on-med-and-down">
             <li><a href="{% url 'about' %}">About</a></li>
             {% if user.is_authenticated %}
+             <li><a href="{% url 'explore_page' %}">Explore</a></li>
              <li><a href="{% url 'shoe_create' %}">Add Shoe</a></li>
             <li><a href="{% url 'collection' %}">My Collection</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li> 
