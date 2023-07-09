@@ -28,6 +28,11 @@ def collection(request):
 @login_required
 def shoe_details(request, shoe_id):
     shoe = Shoe.objects.get(id=shoe_id)
+    if request.method == 'POST' and request.user.is_authenticated:
+        if request.user not in shoe.likes.all():
+            shoe.likes.add(request.user)
+            shoe.save()
+
     user = request.user
     return render(request, 'shoes/details.html', {'shoe': shoe, 'user': user})
 
@@ -64,3 +69,11 @@ def signup(request):
         'form': form, 
         'errorMsg': errorMsg,
     })
+
+def like_shoe(request, shoe_id):
+    if request.method == 'POST' and request.user.is_authenticated:
+        shoe = Shoe.objects.get(id=shoe_id)
+        if request.user not in shoe.likes.all():
+            shoe.likes.add(request.user)
+            shoe.save()
+    return redirect('details', shoe_id=shoe_id)

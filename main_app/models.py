@@ -19,6 +19,7 @@ class Shoe(models.Model):
     year = models.IntegerField('Year Released')
     price = models.FloatField()
     img = models.CharField(max_length=250)
+    likes = models.ManyToManyField(User, related_name='liked_shoes', blank=True)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
