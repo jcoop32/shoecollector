@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-
+# find out how to pass in string as the path for specific username
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -14,4 +14,5 @@ urlpatterns = [
     path('collection/<int:pk>/delete/', views.ShoeDelete.as_view(), name='shoe_delete'),
     path('accounts/signup/', views.signup, name='signup'),
     path('shoes/<int:shoe_id>/like/', views.like_shoe, name='like_shoe'),
+    path('user/<slug:username>/', views.users_collection, name='user_collection'),
 ]

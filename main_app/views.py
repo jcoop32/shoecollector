@@ -3,6 +3,8 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
+
 from django.views.generic import CreateView, UpdateView, DeleteView
 from .models import Shoe
 
@@ -22,19 +24,28 @@ def explore_page(request):
 @login_required
 def collection(request):
     # filters only shoes that user has
+    # shoes = Shoe.objects.filter(user=username)
     shoes = Shoe.objects.filter(user=request.user)
     return render(request, 'shoes/collection.html', {'shoes': shoes})
 
 @login_required
+def users_collection(request, username):
+    # Get the user object based on the username
+    user = User.objects.get(username=username)
+    # Get the shoes for the user
+    shoes = Shoe.objects.filter(user=user)
+    return render(request, 'shoes/users_collection.html', {'shoes': shoes, 'username': username})
+
+@login_required
 def shoe_details(request, shoe_id):
     shoe = Shoe.objects.get(id=shoe_id)
+    num_likes = shoe.likes.count()
     if request.method == 'POST' and request.user.is_authenticated:
         if request.user not in shoe.likes.all():
             shoe.likes.add(request.user)
             shoe.save()
-
     user = request.user
-    return render(request, 'shoes/details.html', {'shoe': shoe, 'user': user})
+    return render(request, 'shoes/details.html', {'shoe': shoe, 'user': user, 'num_likes': num_likes})
 
 class ShoeCreate(LoginRequiredMixin, CreateView):
     model = Shoe
