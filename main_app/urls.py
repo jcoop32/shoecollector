@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from . import views
 
 # find out how to pass in string as the path for specific username
@@ -9,6 +9,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('collection/', views.my_collection, name='collection'),
     path('explore/', views.explore_page, name='explore_page'),
+    # path('explore/(?P<optional_param>[-a-zA-Z0-9_]+)/\\Z', views.explore_page, name='explore_page_optional_param'),
     path('collection/<int:shoe_id>/', views.shoe_details, name='details'),
     path('collection/create/', views.ShoeCreate.as_view(), name='shoe_create'),
     path('collection/<int:pk>/update/', views.ShoeUpdate.as_view(), name='shoe_update'),

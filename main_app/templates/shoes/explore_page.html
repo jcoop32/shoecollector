@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
   <h1>Explore</h1>
+  {% if shoes %}
   <p class="right-algin">Total Shoes: {{ shoes.count }}</p>
   <!-- sorting feature -->
   <!-- Dropdown Trigger -->
@@ -8,13 +9,12 @@
 
   <!-- Dropdown Structure -->
   <ul id="sort" class="dropdown-content">
+    <!-- query for views, use GET request to sort -->
     <li><a href="?sort=brand">Brand</a></li>
-    <li><a href="?sort=likes">Likes</a></li>
+    <!-- <li><a href="?sort=likes">Popular</a></li> -->
     <li><a href="?sort=price">Price (low to high)</a></li>
     <li><a href="?sort=-price">Price (high to low)</a></li>
   </ul>
-
-  {% if shoes %}
     <div class="row">
     {% for shoe in shoes %}
         <div class="col s6 ">
