@@ -25,8 +25,11 @@ def explore_page(request):
         sort_order = sort_by
     # all shoes except the users
     shoes = Shoe.objects.exclude(user=request.user).order_by(sort_order)
-    return render(request, 'shoes/explore_page.html', {'shoes': shoes,})
-
+    #Search 
+    search_query = request.GET.get('brand')
+    if search_query:
+        shoes = shoes.filter(brand__contains=search_query)
+    return render(request, 'shoes/explore_page.html', {'shoes': shoes})
 
 # logged in users collection
 @login_required

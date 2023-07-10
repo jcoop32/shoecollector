@@ -15,7 +15,10 @@
     <header class="navbar-fixed">
     <nav>
         <div class="nav-wrapper blue">
-          <a href="{% url 'home' %}" class="left brand-logo hide-on-med-and-down">&nbsp;&nbsp;ShoeBox</a>
+          <a href="{% url 'home' %}" class="left brand-logo hide-on-med-and-down">
+            <img src="https://i.imgur.com/LcQKSCm.png" alt="Logo" height="64">
+          </a>
+          
           <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <a href="{% url 'home' %}" class="right brand-logo hide-on-large-only show-on-med-and-down">ShoeBox</a>
           <ul class="right hide-on-med-and-down">
@@ -62,6 +65,11 @@
         $('.sidenav').sidenav();
       });
       $('.dropdown-trigger').dropdown();
+      searchBar = document.getElementById('searchbar');
+      submitBtnSearchBar = document.getElementById('searchbarBtn');
+      submitBtnSearchBar.on('click', () => {
+        searchBar.attr('value', ' ');      })
   </script>
+  
 </body>
 </html>

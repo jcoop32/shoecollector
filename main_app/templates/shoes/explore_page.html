@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
   <h1>Explore</h1>
+  <form class="search-form" method="GET" action="{% url 'explore_page' %}">
+    <div class="input-field">
+      <input type="text" name="brand" value="{{ shoes }}" placeholder="Search by shoe name" id="searchbar">
+      <button type="submit" class="btn" id="searchbarBtn"><i class="material-icons">search</i></button>
+    </div>
+  </form>
   {% if shoes %}
   <p class="right-algin">Total Shoes: {{ shoes.count }}</p>
   <!-- sorting feature -->
@@ -40,7 +46,5 @@
   {% else %}
     <p>Your shoe collection is empty.</p>
   {% endif %}
-
   
-
 {% endblock %}

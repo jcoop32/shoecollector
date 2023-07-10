@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
-
+import requests
 typesOfShoes = (
     ('Sneakers', 'Sneakers'),
     ('Casual', 'Casual'),
@@ -27,3 +27,18 @@ class Shoe(models.Model):
         return f'{self.brand} ({self.modelName})'
     def get_absolute_url(self):
         return reverse('details', kwargs={'shoe_id': self.id})
+
+
+# def apiCall(shoe):
+#     url = "https://sneaker-database-stockx.p.rapidapi.com/getproducts"
+
+#     querystring = {"keywords": shoe,"limit":"1"}
+
+#     headers = {
+# 	"X-RapidAPI-Key": "572f50d378msh021a6af858f5f25p163927jsn0cfc2ef4568b",
+# 	"X-RapidAPI-Host": "sneaker-database-stockx.p.rapidapi.com"
+#     }
+
+#     response = requests.get(url, headers=headers, params=querystring)
+
+#     return response.json()
