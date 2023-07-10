@@ -30,6 +30,7 @@ def explore_page(request):
     search_query = request.GET.get('brand')
     if search_query:
         # searches matching brand name or model name
+        # https://stackoverflow.com/questions/16303735/search-through-multiple-fields-in-django
         shoes = shoes.filter(Q(brand__icontains=search_query) | Q(modelName__icontains=search_query))
         search_query = None
     return render(request, 'shoes/explore_page.html', {'shoes': shoes})
