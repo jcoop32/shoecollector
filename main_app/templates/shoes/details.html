@@ -19,7 +19,7 @@
         <p><strong>Type:</strong> {{ shoe.type }}</p>
         <p><strong>Description:</strong> {{ shoe.description }}</p>
         <p><strong>Year Released:</strong> {{ shoe.year }}</p>
-        <p><strong>Price:</strong> ${{ shoe.price }}</p>
+        <p><strong>Price:</strong> ${{ shoe.price|floatformat:2 }}</p>
     </div>
 </div>
 
@@ -32,7 +32,7 @@
                 <button type="submit" class="btn" disabled>Liked</button>
             {% else %}
                 <button type="submit" class="btn">Like</button>
-        {% endif %}
+            {% endif %}
         {% endif %}
     </form>
 </div>

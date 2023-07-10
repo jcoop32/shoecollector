@@ -21,13 +21,19 @@ def explore_page(request):
     shoes = Shoe.objects.exclude(user=request.user)
     return render(request, 'shoes/explore_page.html', {'shoes': shoes})
 
+# logged in users collection
 @login_required
-def collection(request):
+def my_collection(request):
     # filters only shoes that user has
     # shoes = Shoe.objects.filter(user=username)
     shoes = Shoe.objects.filter(user=request.user)
-    return render(request, 'shoes/collection.html', {'shoes': shoes})
+    value = 0.0
+    for shoe in shoes:
+        value += shoe.price
+    return render(request, 'shoes/collection.html', {'shoes': shoes, 'value': value})
 
+
+# other user's collection
 @login_required
 def users_collection(request, username):
     # Get the user object based on the username
@@ -82,7 +88,7 @@ def signup(request):
     })
 
 def like_shoe(request, shoe_id):
-    if request.method == 'POST' and request.user.is_authenticated:
+    if request.method == 'POST':
         shoe = Shoe.objects.get(id=shoe_id)
         if request.user not in shoe.likes.all():
             shoe.likes.add(request.user)

@@ -5,21 +5,22 @@
     <div class="row">
     {% for shoe in shoes %}
         <div class="col s6">
+          <a href="{% url 'details' shoe.id %}" class="black-text">
           <div class="card large hoverable">
             <div class="card-image">
               <img src="{{ shoe.img }}">
             </div>
-            <div class="card-content">
-            <span class="card-title black-text">{{ shoe.brand }} - {{ shoe.modelName }}</span>
+            <div class="card-content ">
+            <span class="card-title black-text flex-text">{{ shoe.brand }} - {{ shoe.modelName }}</span>
               <p>Colorway: {{ shoe.colorway }}</p>
-              <p>Description: {{ shoe.description }}</p>
+              <p>Price: ${{ shoe.price|floatformat:2 }}</p>
               <p>User: <a href="{% url 'user_collection' shoe.user.username %}">{{ shoe.user.username }}</a></p>
-
             </div>
             <div class="card-action ">
               <a href="{% url 'details' shoe.id %}" class="black-text">View</a>
             </div>
           </div>
+        </a>
         </div>
     {% endfor %}
     </div>
