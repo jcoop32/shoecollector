@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
+from django.db.models import Q
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -28,7 +29,9 @@ def explore_page(request):
     #Search 
     search_query = request.GET.get('brand')
     if search_query:
-        shoes = shoes.filter(brand__contains=search_query)
+        # searches matching brand name or model name
+        shoes = shoes.filter(Q(brand__icontains=search_query) | Q(modelName__icontains=search_query))
+        search_query = None
     return render(request, 'shoes/explore_page.html', {'shoes': shoes})
 
 # logged in users collection
