@@ -17,8 +17,14 @@ def about(request):
 
 @login_required
 def explore_page(request):
+    # sorting based on user query
+    sort_by = request.GET.get('sort')
+    # default sort
+    sort_order = 'brand'
+    if (sort_by):
+        sort_order = sort_by
     # all shoes except the users
-    shoes = Shoe.objects.exclude(user=request.user)
+    shoes = Shoe.objects.exclude(user=request.user).order_by(sort_order)
     return render(request, 'shoes/explore_page.html', {'shoes': shoes})
 
 # logged in users collection
