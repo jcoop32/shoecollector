@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
   <h1>Explore</h1>
+  <p class="right-algin">Total Shoes: {{ shoes.count }}</p>
   <!-- sorting feature -->
   <!-- Dropdown Trigger -->
   <a class="dropdown-trigger" href="#" data-target="sort">Sort</a>
@@ -16,7 +17,7 @@
   {% if shoes %}
     <div class="row">
     {% for shoe in shoes %}
-        <div class="col s6">
+        <div class="col s6 ">
           <a href="{% url 'details' shoe.id %}" class="black-text">
           <div class="card large hoverable">
             <div class="card-image">
