@@ -37,6 +37,7 @@
         </div>
       </nav>
     </header>
+    <!-- materialze sidebar nav for smaller screen sizes -->
    <ul class="sidenav" id="mobile"><li>
     <a href="{% url 'about' %}">About</a></li>
     {% if user.is_authenticated %}
@@ -59,7 +60,7 @@
           All Rights Reserved, &copy; 2023 ShoeBox &nbsp;
         </div>
       </footer>
-      <!-- jquery for sidenav -->
+      <!-- jquery for materialze sidenav -->
     <script>
       $(document).ready(() => {
         $('.sidenav').sidenav();

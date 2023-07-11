@@ -2,6 +2,7 @@
 {% block content %}
 
 <h1>Log In</h1>
+<!-- django built in login form -->
 <form method="POST" action="{% url 'login' %}">
     {% csrf_token %}
     {{ form.as_p }}
