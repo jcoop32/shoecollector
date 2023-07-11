@@ -10,6 +10,7 @@ urlpatterns = [
     path('collection/', views.my_collection, name='collection'),
     path('explore/', views.explore_page, name='explore_page'),
     path('collection/<int:shoe_id>/', views.shoe_details, name='details'),
+    path('collection/<int:shoe_id>/add_comment/', views.add_comment, name='add_comment'),
     path('collection/create/', views.ShoeCreate.as_view(), name='shoe_create'),
     path('collection/<int:pk>/update/', views.ShoeUpdate.as_view(), name='shoe_update'),
     path('collection/<int:pk>/delete/', views.ShoeDelete.as_view(), name='shoe_delete'),
@@ -18,4 +19,5 @@ urlpatterns = [
     # get collection of a specific user
     # slug is used to pass in strings and other characters as a path
     path('user/<slug:username>/', views.users_collection, name='user_collection'),
+    
 ]

@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 # options for sneaker type
 typesOfShoes = (
@@ -10,7 +12,6 @@ typesOfShoes = (
     ('Athletic', 'Athletic'),
 )
 
-# Create your models here.
 class Shoe(models.Model):
     # fields and attributes
     brand = models.CharField(max_length=100)
@@ -27,5 +28,15 @@ class Shoe(models.Model):
     
     def __str__(self):
         return f'{self.brand} ({self.modelName})'
+    
     def get_absolute_url(self):
         return reverse('details', kwargs={'shoe_id': self.id})
+    
+class Comment(models.Model):
+    shoe = models.ForeignKey(Shoe, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Comment by {self.user.username} on {self.shoe.brand} ({self.shoe.modelName})'

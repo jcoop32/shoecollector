@@ -7,7 +7,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.views.generic import CreateView, UpdateView, DeleteView
 
-from .models import Shoe
+from .models import Shoe, Comment
+from .forms import CommentForm
 
 # Create your views here.
 def home(request):
@@ -43,6 +44,8 @@ def explore_page(request):
 @login_required
 # logged in users collection
 def my_collection(request):
+    # currentUser = UserProfile.objects.filter(user=request.user)
+    
     # filters only shoes that user has
     # shoes = Shoe.objects.filter(user=username)
     shoes = Shoe.objects.filter(user=request.user)
@@ -50,7 +53,7 @@ def my_collection(request):
     # totaling up collection value for user
     for shoe in shoes:
         value += shoe.price
-    return render(request, 'shoes/collection.html', {'shoes': shoes, 'value': value})
+    return render(request, 'shoes/collection.html', {'shoes': shoes, 'value': value,})
 
 
 # other user's collection
@@ -69,13 +72,10 @@ def shoe_details(request, shoe_id):
     # finding number of likes for shoe
     num_likes = shoe.likes.count()
     # 
-    if request.method == 'POST':
-        if request.user not in shoe.likes.all():
-            shoe.likes.add(request.user)
-            shoe.save()
+    comment_form = CommentForm()
     # getting logged in user
     user = request.user
-    return render(request, 'shoes/details.html', {'shoe': shoe, 'user': user, 'num_likes': num_likes})
+    return render(request, 'shoes/details.html', {'shoe': shoe, 'user': user, 'num_likes': num_likes, 'comment_form': comment_form})
 
 class ShoeCreate(LoginRequiredMixin, CreateView):
     model = Shoe
@@ -128,3 +128,38 @@ def like_shoe(request, shoe_id):
             shoe.likes.add(request.user)
             shoe.save()
     return redirect('details', shoe_id=shoe_id)
+
+
+# def add_comment(request, shoe_id):
+#     if request.method == 'POST':
+#         shoe = Shoe.objects.get(id=shoe_id)
+#         comment = Comment.objects.filter(shoe=shoe)
+#         commentGet = request.POST.get('comment')
+#         if commentGet:
+#             comment.text.add(request.POST)
+#             comment.save()
+            
+#     return redirect('details', shoe_id=shoe_id)
+
+def add_comment(request, shoe_id):
+    shoe = Shoe.objects.get(id=shoe_id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            text = form.cleaned_data['text']
+            Comment.objects.create(shoe=shoe, text=text, user=request.user)
+            return redirect('details', shoe_id=shoe_id)
+    
+
+# def follow_user(request, username, user_id):
+#     if request.method == 'POST':
+#         userToFollow = UserProfile.objects.get(id=user_id)
+#         currentUser = request.user
+#         userToFollow.followers.add(currentUser)
+#     return redirect('user_collection')
+# def unfollow_user(request, user_id): 
+#     if request.method == 'POST':
+#         user_to_unfollow = User.objects.get(id=user_id)
+#         user_profile = UserProfile.objects.get(user=request.user)
+#         user_profile.following.remove(user_to_unfollow)
+#     return redirect('user_collection')

@@ -20,6 +20,7 @@
         <p><strong>Description:</strong> {{ shoe.description }}</p>
         <p><strong>Year Released:</strong> {{ shoe.year }}</p>
         <p><strong>Price:</strong> ${{ shoe.price|floatformat:"2g" }}</p>
+        <p class="left">User: <a href="{% url 'user_collection' shoe.user.username %}">{{ shoe.user.username }}</a></p>
     </div>
 </div>
 
@@ -39,12 +40,33 @@
 
 <br>
 <p>{{ num_likes }} likes</p>
-{% if user.id == shoe.user.id %}
-    <div class="row">
-        <div class="col s12">
-            <a href="{% url 'shoe_update' shoe.id %}" class="btn blue">Edit</a>
-            <a href="{% url 'shoe_delete' shoe.id %}" class="btn blue"><i class="material-icons">delete</i></a>
+
+
+<!-- Comments Section -->
+<div class="row">
+    <h4>Comments:</h4>
+    {% for comment in shoe.comments.all %}
+    <div class="col s6">
+        <div class="card horizontal">
+          <div class="card-stacked">
+            <div class="card-content">
+                <p>User: {{ comment.user }}:</p>
+                <p>{{ comment.text }}</p>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
+    {% empty %}
+        <p>No comments yet.</p>
+    {% endfor %}
+</div>
+
+{% if user.id != shoe.user.id %}
+<!-- Add Comment Form -->
+<form action="{% url 'add_comment' shoe.id %}" method="post">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <input type="submit" class="btn blue" value="Add Comment">
+</form>
 {% endif %}
 {% endblock %}

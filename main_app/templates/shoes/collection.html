@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
+<!-- {% for user in userprofile %}
+  <p> Followers: {{user.followers.count}}</p>
+  <p> Following: {{user.following.count}}</p>
+{% endfor %} -->
   <h1>My Shoe Collection</h1>
   <!-- add shoe btn -->
   <a href="{% url 'shoe_create' %}" draggable="false"><i class="material-icons medium">add_circle</i></a>

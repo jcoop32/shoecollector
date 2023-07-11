@@ -2,6 +2,10 @@
 {% block content %}
 <a href="{% url 'explore_page' %}" draggable="false"><i class="material-icons">arrow_back</i></a>
   <h1>{{ username }}'s Collection</h1>
+  <div class="row">
+    <div class="col s12">
+    </div>
+</div>
   {% if shoes %}
     <div class="row">
     {% for shoe in shoes %}
@@ -23,5 +27,6 @@
     </div>
   {% else %}
     <p>{{ username }}'s shoe collection is empty.</p>
+    
   {% endif %}
 {% endblock %}
