@@ -1,4 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Home</h1>
+<!-- <h1>Home</h1> -->
+<h2>Welcome to ShoeBox</h2>
+<hr>
+<div class="flow-text">
+    <h4>About ShoeBox</h4>
+    <p>Welcome to ShoeBox, the ultimate platform for shoe enthusiasts! 
+      Whether you're a sneakerhead, a fashionista, or simply someone who appreciates
+      stylish footwear, ShoeBox is the perfect place to showcase and explore
+      a wide variety of shoes.</p>
+    <p>Our mission is to bring together shoe lovers from all around the world
+      and provide a platform where they can share their shoe collections, 
+      discover new styles, and connect with fellow shoe enthusiasts.</p>
+    <p>With ShoeBox, you can create your own personal shoe gallery, 
+      browse through a diverse range of shoe categories, and stay updated 
+      with the latest shoe trends and releases. Join our community today 
+      and embark on an exciting journey into the world of shoes!</p>
+</div>
+<br>
+<div class="container center">
+    <a href="{% url 'explore_page' %}" class="btn blue rounded" style="width: 50%;">Explore Shoes</a>
+</div>
+
 {% endblock %}

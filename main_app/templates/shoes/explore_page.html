@@ -2,10 +2,10 @@
 {% block content %}
   <h1>Explore</h1>
   <!-- search bar -->
-  <form class="search-form " method="GET" action="{% url 'explore_page' %}">
+  <form class="search-form" method="GET" action="{% url 'explore_page' %}">
     <div class="input-field">
       <input type="text" name="brand" value="{{ search_query }}" placeholder="Search by shoe name" id="searchbar">
-      <button type="submit" class="btn" id="searchbarBtn"><i class="material-icons">search</i></button>
+      <button type="submit" class="btn blue" id="searchbarBtn"><i class="material-icons">search</i></button>
     </div>
   </form>
   <!--  -->
@@ -20,10 +20,10 @@
   <!--materialize Dropdown Structure -->
   <ul id="sort" class="dropdown-content">
     <!-- query for views, use GET request to sort -->
-    <li><a href="?sort=brand">Brand</a></li>
+    <li><a href="?sort=brand" class="blue-text">Brand</a></li>
     <!-- <li><a href="?sort=likes">Popular</a></li> -->
-    <li><a href="?sort=price">Price (low to high)</a></li>
-    <li><a href="?sort=-price">Price (high to low)</a></li>
+    <li><a href="?sort=price" class="blue-text">Price (low to high)</a></li>
+    <li><a href="?sort=-price" class="blue-text">Price (high to low)</a></li>
   </ul>
   <!-- creating card for each shoe -->
     <div class="row">

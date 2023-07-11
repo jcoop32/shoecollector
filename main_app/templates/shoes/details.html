@@ -31,7 +31,7 @@
             {% if user in shoe.likes.all %}
                 <button type="submit" class="btn" disabled>Liked</button>
             {% else %}
-                <button type="submit" class="btn">Like</button>
+                <button type="submit" class="btn blue">Like</button>
             {% endif %}
         {% endif %}
     </form>
@@ -42,8 +42,8 @@
 {% if user.id == shoe.user.id %}
     <div class="row">
         <div class="col s12">
-            <a href="{% url 'shoe_update' shoe.id %}" class="btn">Edit</a>
-            <a href="{% url 'shoe_delete' shoe.id %}" class="btn"><i class="material-icons">delete</i></a>
+            <a href="{% url 'shoe_update' shoe.id %}" class="btn blue">Edit</a>
+            <a href="{% url 'shoe_delete' shoe.id %}" class="btn blue"><i class="material-icons">delete</i></a>
         </div>
     </div>
 {% endif %}
