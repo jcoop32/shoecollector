@@ -15,12 +15,14 @@
     <header class="navbar-fixed">
     <nav>
         <div class="nav-wrapper blue">
+          <!-- hides at medium breakpoint -->
           <a href="{% url 'home' %}" class="left brand-logo hide-on-med-and-down">
             <img src="https://i.imgur.com/OdXxIxB.png" alt="Logo" height="64">
           </a>
-          
-          <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-          <a href="{% url 'home' %}" class="right brand-logo hide-on-large-only show-on-med-and-down">ShoeBox</a>
+          <!-- changes nav bar links into menu icon when screen is small -->
+          <a href="#" data-target="mobile" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+          <!--  -->
+          <a href="{% url 'home' %}" class="left brand-logo hide-on-large-only show-on-med-and-down">ShoeBox</a>
           <ul class="right hide-on-med-and-down">
             <li><a href="{% url 'about' %}">About</a></li>
             {% if user.is_authenticated %}
@@ -38,14 +40,15 @@
       </nav>
     </header>
     <!-- materialze sidebar nav for smaller screen sizes -->
-   <ul class="sidenav" id="mobile"><li>
+   <ul class="sidenav left" id="mobile"><li>
     <a href="{% url 'about' %}">About</a></li>
     {% if user.is_authenticated %}
       <li><a href="{% url 'explore_page' %}">Explore</a></li>
       <li><a href="{% url 'shoe_create' %}">Add Shoe</a></li>
       <li><a href="{% url 'collection' %}">My Collection</a></li>
       <li><a href="{% url 'logout' %}">Logout</a></li> 
-      <li>Hello, <span style="font-style: italic;">{{ user.username }}&nbsp;&nbsp;</span></li> 
+      <!-- <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hello, {{ user.username }}</li>  -->
+      <li class="container">Hello, {{ user.username }}</li> 
     {% else %}
       <li><a href="{% url 'signup' %}">Sign Up</a></li> 
       <li><a href="{% url 'login' %}">Login</a></li> 

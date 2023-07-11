@@ -5,8 +5,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-
 from django.views.generic import CreateView, UpdateView, DeleteView
+
 from .models import Shoe
 
 # Create your views here.
@@ -96,7 +96,6 @@ class ShoeDelete(LoginRequiredMixin, DeleteView):
     model = Shoe
     # redirects user to collection after successful deletion
     success_url = '/collection'
-
 
 def signup(request):
     errorMsg = ''
