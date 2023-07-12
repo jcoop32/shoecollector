@@ -1,9 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<!-- {% for user in userprofile %}
-  <p> Followers: {{user.followers.count}}</p>
-  <p> Following: {{user.following.count}}</p>
-{% endfor %} -->
+
   <h1>My Shoe Collection</h1>
   <!-- add shoe btn -->
   <a href="{% url 'shoe_create' %}" draggable="false"><i class="material-icons medium">add_circle</i></a>
@@ -14,7 +11,7 @@
     <div class="row">
     {% for shoe in shoes %}
     <a href="{% url 'details' shoe.id %}" class="black-text">
-        <div class="col s6">
+        <div class="col s12 m6 l6 xl4">
           <div class="card large hoverable">
             <div class="card-image">
               <img src="{{ shoe.img }}">

@@ -41,7 +41,6 @@
 <br>
 <p>{{ num_likes }} likes</p>
 
-
 <!-- Comments Section -->
 <div class="row">
     <h4>Comments:</h4>
@@ -60,6 +59,15 @@
         <p>No comments yet.</p>
     {% endfor %}
 </div>
+
+{% if user.id == shoe.user.id %}
+    <div class="row">
+        <div class="col s12">
+            <a href="{% url 'shoe_update' shoe.id %}" class="btn blue">Edit</a>
+            <a href="{% url 'shoe_delete' shoe.id %}" class="btn blue"><i class="material-icons">delete</i></a>
+        </div>
+    </div>
+{% endif %}
 
 {% if user.id != shoe.user.id %}
 <!-- Add Comment Form -->

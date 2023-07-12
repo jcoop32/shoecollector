@@ -31,11 +31,11 @@ def explore_page(request):
     # all shoes except the users
     shoes = Shoe.objects.exclude(user=request.user).order_by(sort_order)
     #Search 
-    search_query = request.GET.get('brand')
+    search_query = request.GET.get('search')
     if search_query:
         # searches matching brand name or model name
         # https://stackoverflow.com/questions/16303735/search-through-multiple-fields-in-django
-        # using __icontains to find 'LIKE' characters
+        # using __icontains to find characters
         shoes = shoes.filter(Q(brand__icontains=search_query) | Q(modelName__icontains=search_query))
         # resets search_query to empty string
         search_query = ''
@@ -54,7 +54,6 @@ def my_collection(request):
     for shoe in shoes:
         value += shoe.price
     return render(request, 'shoes/collection.html', {'shoes': shoes, 'value': value,})
-
 
 # other user's collection
 @login_required
@@ -94,7 +93,7 @@ class ShoeUpdate(LoginRequiredMixin, UpdateView):
 
 class ShoeDelete(LoginRequiredMixin, DeleteView):
     model = Shoe
-    # redirects user to collection after successful deletion
+    # redirects user to collection after successful deletions
     success_url = '/collection'
 
 def signup(request):
@@ -129,18 +128,6 @@ def like_shoe(request, shoe_id):
             shoe.save()
     return redirect('details', shoe_id=shoe_id)
 
-
-# def add_comment(request, shoe_id):
-#     if request.method == 'POST':
-#         shoe = Shoe.objects.get(id=shoe_id)
-#         comment = Comment.objects.filter(shoe=shoe)
-#         commentGet = request.POST.get('comment')
-#         if commentGet:
-#             comment.text.add(request.POST)
-#             comment.save()
-            
-#     return redirect('details', shoe_id=shoe_id)
-
 def add_comment(request, shoe_id):
     shoe = Shoe.objects.get(id=shoe_id)
     if request.method == 'POST':
@@ -150,16 +137,3 @@ def add_comment(request, shoe_id):
             Comment.objects.create(shoe=shoe, text=text, user=request.user)
             return redirect('details', shoe_id=shoe_id)
     
-
-# def follow_user(request, username, user_id):
-#     if request.method == 'POST':
-#         userToFollow = UserProfile.objects.get(id=user_id)
-#         currentUser = request.user
-#         userToFollow.followers.add(currentUser)
-#     return redirect('user_collection')
-# def unfollow_user(request, user_id): 
-#     if request.method == 'POST':
-#         user_to_unfollow = User.objects.get(id=user_id)
-#         user_profile = UserProfile.objects.get(user=request.user)
-#         user_profile.following.remove(user_to_unfollow)
-#     return redirect('user_collection')

@@ -1,8 +1,7 @@
 from django.db import models
 from django.urls import reverse
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 
-User = get_user_model()
 
 # options for sneaker type
 typesOfShoes = (
@@ -36,7 +35,6 @@ class Comment(models.Model):
     shoe = models.ForeignKey(Shoe, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'Comment by {self.user.username} on {self.shoe.brand} ({self.shoe.modelName})'

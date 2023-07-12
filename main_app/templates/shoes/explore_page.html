@@ -4,7 +4,7 @@
   <!-- search bar -->
   <form class="search-form" method="GET" action="{% url 'explore_page' %}">
     <div class="input-field">
-      <input type="text" name="brand" value="{{ search_query }}" placeholder="Search by shoe name" id="searchbar">
+      <input type="text" name="search" value="{{ search_query }}" placeholder="Search by shoe name" id="searchbar">
       <button type="submit" class="btn blue" id="searchbarBtn"><i class="material-icons">search</i></button>
     </div>
   </form>
