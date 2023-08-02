@@ -1,75 +1,96 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="google-site-verification"
+      content="IYrtOMRftPcKu3OzFWluYx3YPGopxsDAupbJmRxJ-98"
+    />
     <title>ShoeBox</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <header class="navbar-fixed">
-    <nav>
+      <nav>
         <div class="nav-wrapper blue">
           <!-- hides at medium breakpoint -->
-          <a href="{% url 'home' %}" class="left brand-logo hide-on-med-and-down">
-            <img src="https://i.imgur.com/OdXxIxB.png" alt="Logo" height="64">
+          <a
+            href="{% url 'home' %}"
+            class="left brand-logo hide-on-med-and-down"
+          >
+            <img src="https://i.imgur.com/OdXxIxB.png" alt="Logo" height="64" />
           </a>
           <!-- changes nav bar links into menu icon when screen is small -->
-          <a href="#" data-target="mobile" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+          <a href="#" data-target="mobile" class="sidenav-trigger right"
+            ><i class="material-icons">menu</i></a
+          >
           <!--  -->
-          <a href="{% url 'home' %}" class="left brand-logo hide-on-large-only show-on-med-and-down">ShoeBox</a>
+          <a
+            href="{% url 'home' %}"
+            class="left brand-logo hide-on-large-only show-on-med-and-down"
+            >ShoeBox</a
+          >
           <ul class="right hide-on-med-and-down">
             <!-- <li><a href="{% url 'about' %}">About</a></li> -->
             {% if user.is_authenticated %}
-             <li><a href="{% url 'explore_page' %}">Explore</a></li>
-             <li><a href="{% url 'shoe_create' %}">Add Shoe</a></li>
-              <li><a href="{% url 'collection' %}">My Collection</a></li>
-              <li><a href="{% url 'logout' %}">Logout </a></li> 
-              <li>&nbsp;Hello, <span style="font-style: italic;">{{ user.username }}&nbsp;&nbsp;</span></li> 
+            <li><a href="{% url 'explore_page' %}">Explore</a></li>
+            <li><a href="{% url 'shoe_create' %}">Add Shoe</a></li>
+            <li><a href="{% url 'collection' %}">My Collection</a></li>
+            <li><a href="{% url 'logout' %}">Logout </a></li>
+            <li>
+              &nbsp;Hello,
+              <span style="font-style: italic"
+                >{{ user.username }}&nbsp;&nbsp;</span
+              >
+            </li>
             {% else %}
-              <li><a href="{% url 'signup' %}">Sign Up</a></li> 
-              <li><a href="{% url 'login' %}">Login</a></li> 
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
             {% endif %}
           </ul>
         </div>
       </nav>
     </header>
     <!-- materialze sidebar nav for smaller screen sizes -->
-   <ul class="sidenav left" id="mobile"><li>
-    <!-- <a href="{% url 'about' %}">About</a></li> -->
-    {% if user.is_authenticated %}
+    <ul class="sidenav left" id="mobile">
+      <li>
+        <!-- <a href="{% url 'about' %}">About</a></li> -->
+        {% if user.is_authenticated %}
+      </li>
+
       <li><a href="{% url 'explore_page' %}">Explore</a></li>
       <li><a href="{% url 'shoe_create' %}">Add Shoe</a></li>
       <li><a href="{% url 'collection' %}">My Collection</a></li>
-      <li><a href="{% url 'logout' %}">Logout</a></li> 
+      <li><a href="{% url 'logout' %}">Logout</a></li>
       <!-- <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hello, {{ user.username }}</li>  -->
-      <li class="container">Hello, {{ user.username }}</li> 
-    {% else %}
-      <li><a href="{% url 'signup' %}">Sign Up</a></li> 
-      <li><a href="{% url 'login' %}">Login</a></li> 
-    {% endif %}
-      </ul>
-    <main class="container">
-        {% block content %} 
-        {% endblock %}
-    </main>
+      <li class="container">Hello, {{ user.username }}</li>
+      {% else %}
+      <li><a href="{% url 'signup' %}">Sign Up</a></li>
+      <li><a href="{% url 'login' %}">Login</a></li>
+      {% endif %}
+    </ul>
+    <main class="container">{% block content %} {% endblock %}</main>
     <footer class="page-footer blue lighten-1">
-        <div class="right">
-          All Rights Reserved, &copy; 2023 ShoeBox &nbsp;
-        </div>
-      </footer>
-      <!-- jquery for materialze sidenav -->
+      <div class="right">All Rights Reserved, &copy; 2023 ShoeBox &nbsp;</div>
+    </footer>
+    <!-- jquery for materialze sidenav -->
     <script>
       $(document).ready(() => {
         $('.sidenav').sidenav();
       });
       $('.dropdown-trigger').dropdown();
-  </script>
-  
-</body>
+    </script>
+  </body>
 </html>
