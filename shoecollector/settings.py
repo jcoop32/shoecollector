@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-xn&na-&8!@usg@^fo5n(@o7oy^uq4b9kdmm#i4@e(e0jar*%l$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'shoecollector-shoebox-39b978c7d635.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', 'shoecollector-dev.us-east-2.elasticbeanstalk.com/']
 
 
 # Application definition
